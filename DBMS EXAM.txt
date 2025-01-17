@@ -1,0 +1,347 @@
+mysql> drop database exam;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create database exam;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use exam;
+Database changed
+mysql> create table client_master(clientNo int(10), name varchar(20), address varchar(20), city varchar(20), state varchar(20), bal_due int(20));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into client_master ()values('01', 'shema devis', 'kt1002', 'huye', 'southern', '3000');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into client_master ()values('02', 'mugabo wilson', 'ks1222', 'gasabo', 'northern', '6000');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master ()values('03', 'muhozi jeph', 'km10000', 'nyagatare', 'easthern', '4000');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master ()values('04', 'kwikiriza peter', 'km10000', 'kicukiro', 'kigali', '7000');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into client_master ()values('05', 'mutabazi eric', 'km5034', 'gisagara', 'southern', '2000');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from client_master where bal_due>5000;
++----------+-----------------+---------+----------+----------+---------+
+| clientNo | name            | address | city     | state    | bal_due |
++----------+-----------------+---------+----------+----------+---------+
+|        2 | mugabo wilson   | ks1222  | gasabo   | northern |    6000 |
+|        4 | kwikiriza peter | km10000 | kicukiro | kigali   |    7000 |
++----------+-----------------+---------+----------+----------+---------+
+2 rows in set (0.01 sec)
+
+mysql> update client_master set clientNo='5100' where clientNo='2';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update client_master set name='client12' where clientNo='1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> create table depertment(depNo int(10), first_name varchar(20), last_name varchar(20), city varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into depertment ()values('01', 'kwikiriza', 'peter', 'kicukiro');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depertment ()values('02', 'mugabe', robert', 'gasabo');
+    '> dd;
+    '> ^C
+mysql> insert into depertment ()values('02', 'mugabe', 'robert', 'gasabo');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depertment ()values('03', 'mutabazi', 'eric', 'huye');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depertment ()values('04', 'muhozi', 'jeph', 'ngoma');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into depertment ()values('05', 'akimana', 'divis', 'rusizi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table employees(emp_id int(10), first_name varchar(20), last_name varchar(20), salary varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into employees ()values('01', 'manzi', 'gerve', '$200');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees ()values('02', 'rwema', 'isaac', '$500');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees ()values('04', 'mugisha', 'yves', '$600');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees ()values('03', 'irakoze', 'fidel', '$100');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employees ()values('05', 'irakiza', 'dan', '$100');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | YES  |     | NULL    |       |
+| first_name | varchar(20) | YES  |     | NULL    |       |
+| last_name  | varchar(20) | YES  |     | NULL    |       |
+| salary     | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> select emp_id, salary from employees LEFT JOIN depertment ON employees.first_name = depertment.first_name;
++--------+--------+
+| emp_id | salary |
++--------+--------+
+|      1 | $200   |
+|      2 | $500   |
+|      4 | $600   |
+|      3 | $100   |
+|      5 | $100   |
++--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select emp_id, salary, last_name from employees RIGHT JOIN depertment ON employees.first_name = depertment.first_name;
+ERROR 1052 (23000): Column 'last_name' in field list is ambiguous
+mysql> select emp_id, salary from employees RIGHT JOIN depertment ON employees.first_name = depertment.first_name;
++--------+--------+
+| emp_id | salary |
++--------+--------+
+|   NULL | NULL   |
+|   NULL | NULL   |
+|   NULL | NULL   |
+|   NULL | NULL   |
+|   NULL | NULL   |
++--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select*from employees where salary >= $500;
+ERROR 1054 (42S22): Unknown column '$500' in 'where clause'
+mysql> select*from employees where salary >= 500;
+Empty set, 5 warnings (0.00 sec)
+
+mysql> create table student(stud_id int(10), first_name varchar(20), last_name varchar(20), salary varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(stud_id int(10), fullnames varchar(20), gender varchar(20), age int(20), department varchar(20));
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into student ()values('01', 'irakiza dan', 'boy','22', 'BIT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student ()values('02', 'kirabo christine', 'girl','18', 'Accounting');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student ()values('03', 'kayitesi belyse', 'girl','25', 'finance');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student ()values('04', 'kwikiriza peter', 'boy','17', 'economy');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create VIEW list_of_stidents AS select * from student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create VIEW list_of_allgirls AS select * from student where gender = girl;
+ERROR 1054 (42S22): Unknown column 'girl' in 'where clause'
+mysql> selct *from student where gender = girl;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct *from student where gender = girl' at line 1
+mysql> select *from student where gender = girl;
+ERROR 1054 (42S22): Unknown column 'girl' in 'where clause'
+mysql> select *from student where gender = 'girl';
++---------+------------------+--------+------+------------+
+| stud_id | fullnames        | gender | age  | department |
++---------+------------------+--------+------+------------+
+|       2 | kirabo christine | girl   |   18 | Accounting |
+|       3 | kayitesi belyse  | girl   |   25 | finance    |
++---------+------------------+--------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create VIEW list_of_allgirls AS select * from student where gender = 'girl';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create VIEW list_of_allboys AS select * from student where gender = 'boy';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select *from student where gender = 'boy';
++---------+-----------------+--------+------+------------+
+| stud_id | fullnames       | gender | age  | department |
++---------+-----------------+--------+------+------------+
+|       1 | irakiza dan     | boy    |   22 | BIT        |
+|       4 | kwikiriza peter | boy    |   17 | economy    |
++---------+-----------------+--------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create VIEW delete_student AS delete * from student where age < '20';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delete * from student where age < '20'' at line 1
+mysql> DELETE FROM student WHERE age < '20';
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> create table employees(emp_id int(10), first_name varchar(20), last_name varchar(20), email varchar(40), phone_number int(20), hire_date date, job_id varchar(20), salary int(20), commission_pct varchar(20), manager_id int(30), department_id int(20));
+ERROR 1050 (42S01): Table 'employees' already exists
+mysql> create table employee(emp_id int(10), first_name varchar(20), last_name varchar(20), email varchar(40), phone_number int(20), hire_date date, job_id varchar(20), salary int(20), commission_pct varchar(20), manager_id int(30), department_id int(20));
+Query OK, 0 rows affected, 5 warnings (0.02 sec)
+
+mysql> insert into employee ()values('01', 'kwikiriza', 'peter', 'peter@gmail.com','078934454','2012-11-02' 'cm213', '30000', 'cm32','1232', 60);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee ()values('01', 'kwikiriza', 'peter', 'peter@gmail.com','078934454','2012-11-02' 'cm213', '30000', 'cm32','1232', '60');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee ()values('01', 'kwikiriza', 'peter', 'peter@gmail.com','078934454','2012-11-02', 'cm213', '30000', 'cm32','1232', '60');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee ()values('02', 'muhozi', 'jeph', 'jeph@gmail.com','055443556','2022-2-23', 'cm2553', '2000', 'cm30','156', '70');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee ()values('03', 'mutabazi', 'austin', 'austin@gmail.com','055443436','2022-4-23', 'cm2353', '5000', 'cm01','356', '80');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select emp_id, first_name, last_name, salary from employee;
++--------+------------+-----------+--------+
+| emp_id | first_name | last_name | salary |
++--------+------------+-----------+--------+
+|      1 | kwikiriza  | peter     |  30000 |
+|      2 | muhozi     | jeph      |   2000 |
+|      3 | mutabazi   | austin    |   5000 |
++--------+------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select from employee where manager_id = '1232';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee where manager_id = '1232'' at line 1
+mysql> select* from employee where manager_id = '1232';
++--------+------------+-----------+-----------------+--------------+------------+--------+--------+----------------+------------+---------------+
+| emp_id | first_name | last_name | email           | phone_number | hire_date  | job_id | salary | commission_pct | manager_id | department_id |
++--------+------------+-----------+-----------------+--------------+------------+--------+--------+----------------+------------+---------------+
+|      1 | kwikiriza  | peter     | peter@gmail.com |     78934454 | 2012-11-02 | cm213  |  30000 | cm32           |       1232 |            60 |
++--------+------------+-----------+-----------------+--------------+------------+--------+--------+----------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select first_name, last_name from employee where salary >= '4800';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| kwikiriza  | peter     |
+| mutabazi   | austin    |
++------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select* from employee where last_name = 'austin';
++--------+------------+-----------+------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+| emp_id | first_name | last_name | email            | phone_number | hire_date  | job_id | salary | commission_pct | manager_id | department_id |
++--------+------------+-----------+------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+|      3 | mutabazi   | austin    | austin@gmail.com |     55443436 | 2022-04-23 | cm2353 |   5000 | cm01           |        356 |            80 |
++--------+------------+-----------+------------------+--------------+------------+--------+--------+----------------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select first_name, last_name from employee where department_id = '60','70','80';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ','70','80'' at line 1
+mysql> select first_name, last_name from employee where department_id IN('70','60','80');
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| kwikiriza  | peter     |
+| muhozi     | jeph      |
+| mutabazi   | austin    |
++------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create table sales(sales_id int(10), salesname varchar(20), branch varchar(20), sale_amount int(20), DOB date);
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> insert into sales ()values('01', 'rice', 'huye','3000','2022-4-23');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales ()values('02', 'milk can', 'nyagatare','400','2025-4-23');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales ()values('03', 'meat', 'huye','400','2025-1-23');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales ()values('04', 'maize', 'gasabo','400','2009-12-21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales ()values('05', 'milk can', 'nyagatare','5030','2010-12-21');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select SUM(sale_amount) FROM sales where branch = 'huye';
++------------------+
+| SUM(sale_amount) |
++------------------+
+|             3400 |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> select SUM(sale_amount) FROM sales where branch = 'nyagatare';
++------------------+
+| SUM(sale_amount) |
++------------------+
+|             5430 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select SUM(sale_amount) FROM sales where branch = 'gasabo';
++------------------+
+| SUM(sale_amount) |
++------------------+
+|              400 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select AVG(sale_amount) FROM sales where branch = 'huye';
++------------------+
+| AVG(sale_amount) |
++------------------+
+|        1700.0000 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select AVG(sale_amount) FROM sales where branch = 'nyagatare';
++------------------+
+| AVG(sale_amount) |
++------------------+
+|        2715.0000 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select AVG(sale_amount) FROM sales where branch = 'gasabo';
++------------------+
+| AVG(sale_amount) |
++------------------+
+|         400.0000 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select salesname FROM sales where DOB = '2009-12-09';
+Empty set (0.02 sec)
+
+mysql> select salesname FROM sales where DOB = '2009-12-21';
++-----------+
+| salesname |
++-----------+
+| maize     |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select name, DOB from sales ORDER BY MONTHNAME(DOB);
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select salesname,DOB FROM sales where DOB = '2009-12-21';
++-----------+------------+
+| salesname | DOB        |
++-----------+------------+
+| maize     | 2009-12-21 |
++-----------+------------+
+1 row in set (0.00 sec)
+mysql> select salesname, DOB from sales ORDER BY DOB;
++-----------+------------+
+| salesname | DOB        |
++-----------+------------+
+| maize     | 2009-12-21 |
+| milk can  | 2010-12-21 |
+| rice      | 2022-04-23 |
+| meat      | 2025-01-23 |
+| milk can  | 2025-04-23 |
++-----------+------------+
+5 rows in set (0.00 sec)
